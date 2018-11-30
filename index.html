@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html id="html">
+
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta content="email=no" name="format-detection" />
+  <meta name="apple-touch-fullscreen" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="keywords" content="东方非想天则 非想天则 则 FXT FXTZ 首页">
+  <meta name="description" content="东方非想天则">
+  <meta property="og:description" content="东方非想天则">
+  <meta property="og:title" content="首页|东方非想天则">
+  <link rel=icon href=https://wx2.sinaimg.cn/mw690/4d227521ly1fcoq8d7jpzj200g00g743.jpg>
+  <title>东方非想天则 ～ 超弩级ギニョルの谜を追え web tsk</title>
+  <link rel="stylesheet" href="./css/index-0fd91ca8ac.css">
+  <script>
+    var isIELow = !!window.ActiveXObject;
+    if ( isIELow ){
+      alert('请使用IE11及现代浏览器访问！');
+    };
+    var isMob = (function () {
+      var arr = ["Android", "iPhone","SymbianOS", "Windows Phone","iPad", "iPod"];
+      var mob = false;
+      for( v in arr ){
+        if ( new RegExp(arr[v], 'i').test(window.navigator.userAgent) ){
+          mob = true;
+        }
+      }
+      return mob;
+    }());
+    if ( isMob ){
+      var width = window.innerWidth || window.screen.width;
+      width = width > 750 ? 750 : width;
+      //document.getElementById("html").style.fontSize = width/750*100 + 'px'
+      document.getElementById("html").classList.add('isMob');
+    }
+  </script>
+</head>
+
+<body class="page-index">
+  <div id="app">
+
+<main class="main">
+  <div class="bg">
+    <span></span>
+  </div>
+  <div class="container">
+    <h1><a>东方非想天则 ～ 超弩级ギニョルの谜を追え web tsk</a></h1>
+    <div class="page page1">
+      <div class="inner">
+        <div class="upload">
+          <input type="file" id="upload" accept="*.db" />
+          <div class="text">
+            点击或拖拽上传你的.db文件
+          </div>
+        </div>
+        <div class="tip">
+          <p>1.tsk的db文件默认位于tsk目录下的Default.db</p>
+          <p>2.tsk的配置文件tsk.ini中也可读改db文件位置</p>
+          <p>3.你也可以点下面的按钮来查看我的战绩演示</p>
+          <p>4.总之对日文名支持很糟糕了。中文也是</p>
+          <p>5.更多详细介绍<a href="https://nostarsnow.github.io/" target="_blank">点这里</a></p>
+        </div>
+        <div class="test btn">
+          <a>查看演示</a>
+        </div>
+      </div>
+    </div>
+    <div class="page page2">
+      <div class="inner">
+        <div class="content">
+          <div class="page2-data">
+          </div>
+          <script type="text/tpl" id="tpl-page2-data">
+            <div class="b">你的记录一共对局{{list.length}}场，胜率为{{winPercent}}%</div>
+            <div class="b">时间跨度为{{dayData.begin}}至{{dayData.end}}，对战{{dayData.days}}/{{dayData.offset}}天</p></div>
+            <div class="b">
+              <p>共使用了{{p1Names.length}}个名字</p>
+              <div class="s">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>符卡名</th>
+                      <th>使用机体</th>
+                      <th>胜场数</th>
+                      <th>总对战数</th>
+                      <th>胜率</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{ for v,i in p1Names }}
+                    <tr data-name="{{i}}">
+                      <td class="name">{{v.name || '佚名'}}</td>
+                      <td class="role">
+                        {{ for vv,ii in v.roles }}
+                          {{ ii !== 0 ? ' ' : ''}}<span>{{window.opt.role[vv].n}}</span>
+                        {{ /for }}
+                      </td>
+                      <td class="winNum">{{v.win}}</td>
+                      <td class="totalNum">{{v.total}}</td>
+                      <td class="percent">{{v.winPercent}}%</td>
+                    </tr>
+                    {{ /for }}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="b">
+              <p>共使用了{{p1Roles.length}}个角色</p>
+              <div class="s">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>角色名</th>
+                      <th>胜场数</th>
+                      <th>总对战数</th>
+                      <th>胜率</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{ for v,i in p1Roles }}
+                    <tr data-role="{{v.role}}">
+                      <td class="name">{{window.opt.role[v.role].n}}</td>
+                      <td class="winNum">{{v.win}}</td>
+                      <td class="totalNum">{{v.total}}</td>
+                      <td class="percent">{{v.winPercent}}%</td>
+                    </tr>
+                    {{ /for }}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="b">共对战过{{p2Names.length}}位机师。</div>
+          </script>
+        </div>
+        <div class="toDetail btn">
+          <a>查看详情</a>
+        </div>
+      </div>
+    </div>
+    <div class="page page3">
+      <div class="inner">
+        <div class="page3-data">
+          <div class="search-box">
+            <table>
+              <thead>
+                <tr>
+                  <th>你的符卡名</th>
+                  <th width="150">你的角色名</th>
+                  <th>对手符卡名</th>
+                  <th width="150">对手角色名</th>
+                </tr>
+              </thead>
+              <tbody class="page3-tbody">
+                <tr>
+                  <td>
+                    <select id="p1Names">
+                    </select>
+                    <script type="text/tpl" id="tpl-p1Names">
+                      <option value="">所有</option>
+                      {{ for v,i in p1Names }}
+                      <option value="{{i}}">{{v.name || '佚名'}}</option>
+                      {{ /for }}
+                    </script>
+                  </td>
+                  <td>
+                    <select id="p1Roles">
+                    </select>
+                    <script type="text/tpl" id="tpl-p1Roles">
+                      <option value="">所有</option>
+                      {{ for v,i in data }}
+                      <option value="{{v}}">{{window.opt.role[v].n}}</option>
+                      {{ /for }}
+                    </script>
+                  </td>
+                  <td>
+                    <select id="p2Names">
+                    </select>
+                    <script type="text/tpl" id="tpl-p2Names">
+                      <option value="">所有</option>
+                      {{ for v,i in p2Names }}
+                      <option value="{{i}}">{{v.name}}{{v.nick ? '（' + v.nick + '）' : ''}}</option>
+                      {{ /for }}
+                    </script>
+                  </td>
+                  <td>
+                    <select id="p2Roles">
+                    </select>
+                    <script type="text/tpl" id="tpl-p2Roles">
+                      <option value="">所有</option>
+                      {{ for v in data }}
+                      <option value="{{v}}">{{window.opt.role[v].n}}</option>
+                      {{ /for }}
+                    </script>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="btns">
+              <div class="back btn">
+                <a>返回上一层</a>
+              </div>
+              <div class="search btn">
+                <a>生成胜率报告</a>
+              </div>
+            </div>
+          </div>
+          <div class="content">
+            <div class="title"></div>
+            <div id="canvas"></div>
+            <script type="text/tpl" id="tpl-title">
+              <div class="b">{{p1Name || '你'}}的{{p1Role || '所有角色'}}与{{p2Name || window.opt.data.p2Names.length+'位机师'}}{{p2Nick ? '（' + p2Nick + '）' : ''}}的{{p2Role || '所有角色'}}共对局{{result.total}}场，胜场数为{{result.p1Win}}，胜率为{{result.p1WinPer}}%</div>
+              <div class="b">时间跨度为{{dayData.begin}}至{{dayData.end}}，对战{{dayData.days}}/{{dayData.offset}}天</div>
+              <div class="b">0:2共{{result.v02}}局，1:2共{{result.v12}}局，2:1共{{result.v21}}局，2:0共{{result.v20}}局</div>
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  
+</footer>
+</div>
+<script src="./js/core.js"></script>
+<script src="./js/echarts.min.js"></script>
+<script src="./js/ns-a9b68f36da.js"></script>
+<script src="./js/sql1.js"></script>
+<script src="./js/index-06e41a7d81.js"></script>
+</body>
+
+</html>
