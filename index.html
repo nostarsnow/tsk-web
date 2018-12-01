@@ -15,7 +15,7 @@
   <meta property="og:title" content="首页|东方非想天则">
   <link rel=icon href=https://wx2.sinaimg.cn/mw690/4d227521ly1fcoq8d7jpzj200g00g743.jpg>
   <title>东方非想天则 ～ 超弩级ギニョルの谜を追え web tsk</title>
-  <link rel="stylesheet" href="./css/index-0fd91ca8ac.css">
+  <link rel="stylesheet" href="./css/index-4187b4bfe0.css">
   <script>
     var isIELow = !!window.ActiveXObject;
     if ( isIELow ){
@@ -46,9 +46,10 @@
 <main class="main">
   <div class="bg">
     <span></span>
+    <div class="particle-bg"></div>
   </div>
   <div class="container">
-    <h1><a>东方非想天则 ～ 超弩级ギニョルの谜を追え web tsk</a></h1>
+    <h1><a title="东方非想天则 ～ 超弩级ギニョルの谜を追え web tsk"><img src="./img/title1.png"/></a></h1>
     <div class="page page1">
       <div class="inner">
         <div class="upload">
@@ -62,10 +63,10 @@
           <p>2.tsk的配置文件tsk.ini中也可读改db文件位置</p>
           <p>3.你也可以点下面的按钮来查看我的战绩演示</p>
           <p>4.总之对日文名支持很糟糕了。中文也是</p>
-          <p>5.更多详细介绍<a href="https://nostarsnow.github.io/" target="_blank">点这里</a></p>
+          <p>5.更多详细和更新介绍<a href="https://nostarsnow.github.io/" target="_blank">点这里</a></p>
         </div>
         <div class="test btn">
-          <a>查看演示</a>
+          <a>点击查看演示</a>
         </div>
       </div>
     </div>
@@ -75,23 +76,26 @@
           <div class="page2-data">
           </div>
           <script type="text/tpl" id="tpl-page2-data">
+            <div class="toDetail btn">
+              <a>点击查看全部详情</a>
+            </div>
             <div class="b">你的记录一共对局{{list.length}}场，胜率为{{winPercent}}%</div>
-            <div class="b">时间跨度为{{dayData.begin}}至{{dayData.end}}，对战{{dayData.days}}/{{dayData.offset}}天</p></div>
+            <div class="b">时间跨度为{{dayData.begin}}至{{dayData.end}}，对战{{dayData.days}}/{{dayData.offset}}天。共对战过{{p2Names.length}}位机师。</p></div>
             <div class="b">
-              <p>共使用了{{p1Names.length}}个名字</p>
+              <p>共使用了{{p1Names.length}}个名字（点击表头排序，点击一行查看详情）</p>
               <div class="s">
                 <table>
                   <thead>
                     <tr>
-                      <th>符卡名</th>
-                      <th>使用机体</th>
-                      <th>胜场数</th>
-                      <th>总对战数</th>
-                      <th>胜率</th>
+                      <th class="no-sort">符卡名</th>
+                      <th class="no-sort">使用机体</th>
+                      <th class="number">胜场数</th>
+                      <th class="number">总对战数</th>
+                      <th class="number">胜率</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {{ for v,i in p1Names }}
+                    {{ for v,i in p1Names.concat([]).sort((a,b)=>b.total-a.total) }}
                     <tr data-name="{{i}}">
                       <td class="name">{{v.name || '佚名'}}</td>
                       <td class="role">
@@ -109,19 +113,19 @@
               </div>
             </div>
             <div class="b">
-              <p>共使用了{{p1Roles.length}}个角色</p>
+              <p>共使用了{{p1Roles.length}}个角色（点击表头排序，点击一行查看详情）</p>
               <div class="s">
                 <table>
                   <thead>
                     <tr>
-                      <th>角色名</th>
-                      <th>胜场数</th>
-                      <th>总对战数</th>
-                      <th>胜率</th>
+                      <th class="no-sort">角色名</th>
+                      <th class="number">胜场数</th>
+                      <th class="number">总对战数</th>
+                      <th class="number">胜率</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {{ for v,i in p1Roles }}
+                    {{ for v,i in p1Roles.concat([]).sort((a,b)=>b.total-a.total) }}
                     <tr data-role="{{v.role}}">
                       <td class="name">{{window.opt.role[v.role].n}}</td>
                       <td class="winNum">{{v.win}}</td>
@@ -133,11 +137,7 @@
                 </table>
               </div>
             </div>
-            <div class="b">共对战过{{p2Names.length}}位机师。</div>
           </script>
-        </div>
-        <div class="toDetail btn">
-          <a>查看详情</a>
         </div>
       </div>
     </div>
@@ -204,7 +204,7 @@
                 <a>返回上一层</a>
               </div>
               <div class="search btn">
-                <a>生成胜率报告</a>
+                <a>点击生成胜率报告</a>
               </div>
             </div>
           </div>
@@ -228,10 +228,12 @@
 </footer>
 </div>
 <script src="./js/core.js"></script>
-<script src="./js/echarts.min.js"></script>
+<script src="./js/tablesort.min.js"></script>
+<script src="https://sit.sysshu.com/static/js/lib-me/echarts.min.js"></script>
+<script src="https://sit.sysshu.com/static/js/lib-me/sql1.js"></script>
+<script src="https://sit.sysshu.com/static/js/particle/particle-network-cmd.js"></script>
 <script src="./js/ns-a9b68f36da.js"></script>
-<script src="./js/sql1.js"></script>
-<script src="./js/index-a913595008.js"></script>
+<script src="./js/index-56de261964.js"></script>
 </body>
 
 </html>
